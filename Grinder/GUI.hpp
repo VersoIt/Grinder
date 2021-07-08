@@ -25,18 +25,11 @@ namespace EngineComponents
 		virtual void move(sf::Vector2f offset) override;
 		virtual void rotate(float degrees) override;
 
-		void display(const std::string& name); // selects the selected collection item for rendering
-		void diplayAll() { m_currentGUIObject = nullptr; }
-
-		GUIObject& getCurrentDisplayObject() { return *m_currentGUIObject; }
-
 		virtual void catchMouseEvent(const sf::Event& event, const sf::Vector2i& mousePos) override;
 
 	protected:
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
-	private:
-		GUIObject* m_currentGUIObject;
 	};
 }
 

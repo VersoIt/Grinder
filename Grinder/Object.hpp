@@ -17,9 +17,6 @@ namespace EngineComponents
 
 		virtual void catchMouseEvent(const sf::Event& event, const sf::Vector2i& mousePos) override = 0;
 
-		std::string& getName() { return m_name; }
-		const std::string& getName() const { return m_name; }
-
 	protected:
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override = 0;
 
