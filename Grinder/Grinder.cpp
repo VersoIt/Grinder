@@ -67,10 +67,10 @@ int main()
 
 	EngineComponents::Game game("Utility/Map.tmx", "Game");
 
-	GUI mainMenu("Interface/MainMenu/Background.png", "MainMenu");
-	GUI settingsMenu("Interface/SettingsMenu/Background.png", "SettingsMenu");
-	GUI pauseMenu("Interface/PauseMenu/Background.png", "PauseMenu");
-	GUI confirmMenu("Interface/PauseMenu/Background.png", "PauseMenu");
+	GUI mainMenu("Interface/MainMenu/Background.png");
+	GUI settingsMenu("Interface/SettingsMenu/Background.png");
+	GUI pauseMenu("Interface/PauseMenu/Background.png");
+	GUI confirmMenu("Interface/PauseMenu/Background.png");
 
 	window.create(sf::VideoMode::getDesktopMode(), "Elision engine works!", sf::Style::Fullscreen);
 	window.setFramerateLimit(120);

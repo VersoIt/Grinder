@@ -3,7 +3,7 @@
 namespace EngineComponents
 {
 
-	GUI::GUI(const std::string& backgroundPath, const std::string& name, size_t capacity) : GUIObject(backgroundPath, name), m_currentGUIObject{ nullptr }
+	GUI::GUI(const std::string& backgroundPath, const std::string& name, size_t capacity) : GUIObject(backgroundPath), m_currentGUIObject{ nullptr }
 	{
 		getContainer().reserve(capacity);
 	}

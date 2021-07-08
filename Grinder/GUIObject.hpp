@@ -15,7 +15,7 @@ namespace EngineComponents
 	{
 
 	public:
-		GUIObject(const std::string& path, const std::string& name = "GUIObject") : SpriteManager(path), Object(name)
+		GUIObject(const std::string& path) : SpriteManager(path)
 		{
 		}
 

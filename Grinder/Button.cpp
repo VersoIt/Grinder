@@ -4,7 +4,7 @@
 namespace EngineComponents
 {
 	Button::Button(const std::string& imagePath, const std::string& hoverPath, sf::Vector2f pos, std::function<void(void)> action, const std::string& name, const std::string& text)
-		: GUIObject(imagePath, name), m_action{ action }, m_hover{ hoverPath }, m_currentSprite{ imagePath }, TextManager{ text }, m_isClicked{ false }
+		: GUIObject(imagePath), m_action{ action }, m_hover{ hoverPath }, m_currentSprite{ imagePath }, TextManager{ text }, m_isClicked{ false }
 	{
 		getSprite().setPosition(pos);
 		m_hover.getSprite().setPosition(pos);

@@ -14,7 +14,7 @@ namespace EngineComponents
 	{
 	public:
 
-		GUI(const std::string& backgroundPath = "", const std::string& name = "GUI", size_t capacity = 5);
+		GUI(const std::string& backgroundPath = "", size_t capacity = 5);
 
 		virtual void setSize(const sf::Vector2f& targetSize) override;
 		virtual void setScale(const sf::Vector2f factors) override;

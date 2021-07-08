@@ -11,7 +11,7 @@ namespace EngineComponents
 	class Object : virtual public sf::Drawable, public EngineComponents::MouseEventable
 	{
 	public:
-		Object(const std::string& name = "Object") : m_name{ name }
+		Object()
 		{
 		}
 
@@ -22,9 +22,6 @@ namespace EngineComponents
 
 	protected:
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override = 0;
-
-	private:
-		std::string m_name;
 
 	};
 }

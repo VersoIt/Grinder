@@ -14,7 +14,7 @@ namespace EngineComponents
 	class Game : public EngineComponents::GUI
 	{
 	public:
-		Game(const std::string& mapPath, const std::string& name) { m_map.load(mapPath); getName() = name; }
+		Game(const std::string& mapPath, const std::string& name) { m_map.load(mapPath); }
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
 		{
 			target.draw(m_map, states);
