@@ -61,6 +61,15 @@ void generateConfirmMenu(EngineComponents::GUI& scene, sf::Window& window, Gui& 
 	scene.push(new EngineComponents::Button("Interface/PauseMenu/MusicButton.png", "Interface/PauseMenu/MusicButtonHover.png", { 1795.f, 108.f }, [&]() {std::cout << "Music" << std::endl; }));
 }
 
+void generateWarningMenu(EngineComponents::GUI& scene, sf::Window& window)
+{
+	scene.getText().setString("WARNING!");
+	scene.getText().setCharacterSize(80);
+	scene.setFont("Fonts/Archive.ttf");
+	scene.getText().setPosition(window.getSize().x / 2, window.getSize().y / 2);
+	scene.getText().setFillColor(sf::Color::Red);
+}
+
 int main()
 {
 	try
@@ -76,6 +85,7 @@ int main()
 		GUI mainMenu("Interface/MainMenu/Background.png");
 		GUI settingsMenu("Interface/SettingsMenu/Background.png");
 		GUI pauseMenu("Interface/PauseMenu/Background.png");
+		GUI warningMenu("Interface/WarningMenu/Background.png");
 
 		window.create(sf::VideoMode::getDesktopMode(), "Elision engine works!", sf::Style::Default);
 		window.setFramerateLimit(300);
@@ -90,6 +100,7 @@ int main()
 		generateMainMenu(mainMenu, window, focus);
 		generateSettingsMenu(settingsMenu, window, focus);
 		generatePauseMenu(pauseMenu, window, focus);
+		generateWarningMenu(warningMenu, window);
 
 		RenderObject* currentScene = &mainMenu;
 		while (window.isOpen())
@@ -154,7 +165,7 @@ int main()
 				window.draw(mainMenu);
 				break;
 			}
-
+			window.draw(warningMenu);
 			window.display();
 		}
 
