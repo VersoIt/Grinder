@@ -9,10 +9,10 @@
 
 namespace EngineComponents
 {
-	class RenderObject
+	class RenderCell
 	{
 	public:
-		RenderObject(float x, float y, float width, float height) : rect(x, y, width, height)
+		RenderCell(float x, float y, float width, float height) : rect(x, y, width, height)
 		{
 
 		}
@@ -30,21 +30,25 @@ namespace EngineComponents
 	class TileMap : public sf::Drawable
 	{
 	public:
+		TileMap() : m_texture{ nullptr }
+		{
+		}
+
 		~TileMap();
 
 		bool load(const std::string& tmx_file_path);
 
-		RenderObject               getRenderObject(const std::string& name);
-		std::vector<RenderObject>  getRenderObjectsByName(const std::string& name);
-		std::vector<RenderObject>  getRenderObjectsByType(const std::string& type);
-		std::vector<RenderObject>& getAllRenderObjects();
+		RenderCell               getRenderCell(const std::string& name);
+		std::vector<RenderCell>  getRenderCellsByName(const std::string& name);
+		std::vector<RenderCell>  getRenderCellsByType(const std::string& type);
+		std::vector<RenderCell>& getAllRenderCells();
 
 	private:
 		void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
-		sf::Texture* texture;
-		std::vector<sf::VertexArray> tile_layers;
-		std::vector<RenderObject>          objects;
+		sf::Texture* m_texture;
+		std::vector<sf::VertexArray> m_tileLayers;
+		std::vector<RenderCell>          m_objects;
 	};
 }
 

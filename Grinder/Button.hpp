@@ -9,15 +9,15 @@
 #include "TextManager.hpp"
 #include "MouseEventable.hpp"
 #include "Manager.hpp"
-#include "GUIObject.hpp"
+#include "RenderObject.hpp"
 
 namespace EngineComponents
 {
-	class Button : public TextManager, public EngineComponents::GUIObject
+	class Button : public RenderObject
 	{
 	public:
 
-		Button(const std::string& imagePath, const std::string& hoverPath, sf::Vector2f pos = {0, 0}, std::function<void(void)> action = []() {}, const std::string& name = "Button", const std::string& text = "");
+		Button(const std::string& imagePath, const std::string& hoverPath, sf::Vector2f pos = {0, 0}, std::function<void(void)> action = []() {}, const std::string& text = "");
 
 		void setCurrentSprite(const SpriteManager& sprite) { m_currentSprite = sprite; }
 

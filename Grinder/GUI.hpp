@@ -6,11 +6,11 @@
 
 #include "Container.hpp"
 #include "Manager.hpp"
-#include "GUIObject.hpp"
+#include "RenderObject.hpp"
 
 namespace EngineComponents
 {
-	class GUI : public Container<GUIObject>, public GUIObject, public Manager
+	class GUI : public Container<RenderObject>, public RenderObject
 	{
 	public:
 

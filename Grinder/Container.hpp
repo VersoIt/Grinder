@@ -23,7 +23,7 @@ namespace EngineComponents
 		Container(const std::vector<T*>& container);
 		Container(const std::vector<T*>&& container);
 
-		Container(const Container&& container);
+		Container(const Container&& container) noexcept;
 
 		std::vector<T*>& operator = (std::vector<T*>& copy);
 		std::vector<T*>& operator = (std::vector<T*>&& copy);

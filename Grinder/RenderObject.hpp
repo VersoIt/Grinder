@@ -8,14 +8,15 @@
 #include "Manager.hpp"
 #include "SpriteManager.hpp"
 #include "Object.hpp"
+#include "TextManager.hpp"
 
 namespace EngineComponents
 {
-	class GUIObject : public Object, public Manager, public SpriteManager
+	class RenderObject : public Object, public Manager, public SpriteManager, public TextManager
 	{
 
 	public:
-		GUIObject(const std::string& path) : SpriteManager(path)
+		RenderObject(const std::string& backgroundPath, const std::string& text = "") : SpriteManager(backgroundPath)
 		{
 		}
 
@@ -30,10 +31,10 @@ namespace EngineComponents
 
 		virtual void catchMouseEvent(const sf::Event& event, const sf::Vector2i& mousePos) override {}
 
-		virtual ~GUIObject() {};
+		virtual ~RenderObject() {};
 
 	protected:
-		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const { SpriteManager::draw(target, states); }
+		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	
 	};
 }

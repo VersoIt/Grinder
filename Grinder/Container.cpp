@@ -23,7 +23,7 @@ namespace EngineComponents
 	}
 
 	template <class T>
-	Container<T>::Container(const Container&& container)
+	Container<T>::Container(const Container&& container) noexcept
 	{
 		m_container = std::move(container.m_container);
 	}

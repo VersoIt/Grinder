@@ -162,11 +162,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Configuration.cpp" />
     <ClCompile Include="Container.cpp" />
     <ClCompile Include="FrameRate.cpp" />
     <ClCompile Include="Grinder.cpp" />
     <ClCompile Include="GUI.cpp" />
-    <ClCompile Include="GUIObject.cpp" />
+    <ClCompile Include="RenderObject.cpp" />
     <ClCompile Include="ScrollField.cpp" />
     <ClCompile Include="SpriteManager.cpp" />
     <ClCompile Include="MapRenderer.cpp" />
@@ -176,6 +177,7 @@
   <ItemGroup>
     <ClInclude Include="Button.hpp" />
     <ClInclude Include="Container.hpp" />
+    <ClInclude Include="Exceptions.hpp" />
     <ClInclude Include="Entity.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GUI.hpp" />
@@ -183,10 +185,11 @@
     <ClInclude Include="MouseEventable.hpp" />
     <ClInclude Include="FrameRate.hpp" />
     <ClInclude Include="Manager.hpp" />
-    <ClInclude Include="GUIObject.hpp" />
+    <ClInclude Include="RenderObject.hpp" />
     <ClInclude Include="Object.hpp" />
     <ClInclude Include="Random.hpp" />
     <ClInclude Include="ScrollField.hpp" />
+    <ClInclude Include="Configuration.hpp" />
     <ClInclude Include="SpriteManager.hpp" />
     <ClInclude Include="TextManager.hpp" />
     <ClInclude Include="Timer.hpp" />

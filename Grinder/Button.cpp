@@ -3,8 +3,8 @@
 
 namespace EngineComponents
 {
-	Button::Button(const std::string& imagePath, const std::string& hoverPath, sf::Vector2f pos, std::function<void(void)> action, const std::string& name, const std::string& text)
-		: GUIObject(imagePath), m_action{ action }, m_hover{ hoverPath }, m_currentSprite{ imagePath }, TextManager{ text }, m_isClicked{ false }
+	Button::Button(const std::string& imagePath, const std::string& hoverPath, sf::Vector2f pos, std::function<void(void)> action, const std::string& text)
+		: RenderObject(imagePath, text), m_action{ action }, m_hover{ hoverPath }, m_currentSprite{ imagePath }, m_isClicked{ false }
 	{
 		getSprite().setPosition(pos);
 		m_hover.getSprite().setPosition(pos);
@@ -18,8 +18,8 @@ namespace EngineComponents
 	void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const 
 	{ 
 		SpriteManager::draw(target, states);
-		TextManager::draw(target, states);
 		target.draw(m_currentSprite.getSprite(), states);
+		TextManager::draw(target, states);
 	}
 
 	void Button::setScale(const sf::Vector2f factors) 
@@ -37,6 +37,7 @@ namespace EngineComponents
 	void Button::setPosition(sf::Vector2f pos)
 	{
 		getSprite().setPosition(pos.x, pos.y);
+		m_currentSprite.getSprite().setPosition(pos.x, pos.y);
 		getHover().getSprite().setPosition(pos.x, pos.y);
 	}
 
@@ -84,6 +85,7 @@ namespace EngineComponents
 			m_currentSprite.getSprite() = getSprite();
 			m_currentSprite.getTexture() = getTexture();
 		}
+
 
 		if (event.type == sf::Event::MouseButtonReleased)
 		{

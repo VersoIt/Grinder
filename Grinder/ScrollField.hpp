@@ -3,7 +3,9 @@
 #define _SCROLL_FiELD_HPP_
 
 #include <string>
+
 #include "Button.hpp"
+#include "tinyxml2.h"
 
 namespace EngineComponents
 {
@@ -11,31 +13,28 @@ namespace EngineComponents
 	{
 	public:
 
-		enum class Style
-		{
-			Default,
-			Text
-		};
-
-		ScrollField(sf::Window& window, Button* button, Button* minButton, Button* maxButton, std::string imagePath, std::string hoverPath, sf::Vector2f pos);
+		ScrollField(sf::Window& window, Button* button, Button* minButton, Button* maxButton, std::string imagePath, std::string hoverPath, sf::Vector2f pos, int share = 80);
 
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates state) const;
 
 		virtual void catchMouseEvent(const sf::Event& event, const sf::Vector2i& mousePos);
 
+		int getShare() const { return m_share; }
+
 		virtual ~ScrollField();
 
 	private:
-		Button* m_button;
+		Button* m_currentButton;
 		sf::Window& m_window;
 		bool m_isMove;
 
-		Button* m_currentButton;
+		Button* m_button;
 		Button* m_minButton;
 		Button* m_maxButton;
 
 		sf::Text m_shadowText;
 
+		int m_share;
 		float m_dX;
 	};
 }
