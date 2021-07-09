@@ -19,6 +19,8 @@ namespace EngineComponents
 
 		Button(const std::string& imagePath, const std::string& hoverPath, sf::Vector2f pos = {0, 0}, std::function<void(void)> action = []() {}, const std::string& text = "");
 
+		Button(sf::Vector2f increase, const std::string& imagePath, const std::string& hoverPath, sf::Vector2f pos = { 0, 0 }, std::function<void(void)> action = []() {}, const std::string& text = "");
+
 		void setCurrentSprite(const SpriteManager& sprite) { m_currentSprite = sprite; }
 
 		virtual void setScale(const sf::Vector2f factors) override;

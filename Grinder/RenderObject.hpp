@@ -16,9 +16,11 @@ namespace EngineComponents
 	{
 
 	public:
-		RenderObject(const std::string& backgroundPath, const std::string& text = "") : SpriteManager(backgroundPath)
+		RenderObject(const std::string& backgroundPath, const std::string& text = "") : SpriteManager(backgroundPath), TextManager(text)
 		{
 		}
+
+		RenderObject(const std::string& backgroundPath, const sf::Vector2f& increase, const std::string& text = "");
 
 		virtual void setScale(const sf::Vector2f factors) override { getSprite().setScale(factors); }
 		virtual void setSize(const sf::Vector2f& targetSize) override;

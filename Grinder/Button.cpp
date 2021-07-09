@@ -13,6 +13,18 @@ namespace EngineComponents
 		m_currentSprite.getSprite() = getSprite();
 		m_currentSprite.getTexture() = getTexture();
 		m_currentSprite.getTextureFilePath() = getTextureFilePath();
+
+		getText().setCharacterSize(56);
+		getText().setLetterSpacing(1.3f);
+		setFont("Fonts/Archive.ttf");
+		getText().setPosition(getSprite().getPosition().x, getSprite().getPosition().y - getText().getLocalBounds().height / 2);
+
+	}
+
+	Button::Button(sf::Vector2f increase, const std::string& imagePath, const std::string& hoverPath, sf::Vector2f pos, std::function<void(void)> action, const std::string& text)
+		: Button(imagePath, hoverPath, pos, action, text)
+	{
+		setScale(increase);
 	}
 
 	void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const 
@@ -25,6 +37,7 @@ namespace EngineComponents
 	void Button::setScale(const sf::Vector2f factors) 
 	{ 
 		getSprite().setScale(factors); 
+		m_currentSprite.getSprite().setScale(factors);
 		getHover().getSprite().setScale(factors);
 	}
 

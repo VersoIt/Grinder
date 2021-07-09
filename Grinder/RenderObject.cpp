@@ -2,6 +2,12 @@
 
 namespace EngineComponents
 {
+
+	RenderObject::RenderObject(const std::string& backgroundPath, const sf::Vector2f& increase, const std::string& text) : RenderObject(backgroundPath, text)
+	{
+		setScale(increase);
+	}
+
 	void RenderObject::setSize(const sf::Vector2f& targetSize) 
 	{
 		getSprite().setScale(
