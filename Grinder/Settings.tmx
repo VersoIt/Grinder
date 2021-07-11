@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--Settings file-->
 <settings>
-    <sound value="52"/>
-    <music value="100"/>
+    <sound value="80"/>
+    <music value="80"/>
 </settings>

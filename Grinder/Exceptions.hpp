@@ -12,6 +12,18 @@ namespace EngineComponents
 		SettingsFileMissing(const char* msg) : std::exception(msg)
 		{
 		}
+
+	private:
+
+	};
+
+	class FileMissing : public std::exception
+	{
+	public:
+		FileMissing(const char* msg) : std::exception(msg)
+		{
+		}
+
 	private:
 
 	};

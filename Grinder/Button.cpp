@@ -14,7 +14,7 @@ namespace EngineComponents
 		m_currentSprite.getTexture() = getTexture();
 		m_currentSprite.getTextureFilePath() = getTextureFilePath();
 
-		getText().setCharacterSize(56);
+		getText().setCharacterSize(getTexture().getSize().y / 2.3f);
 		getText().setLetterSpacing(1.3f);
 		setFont("Fonts/Archive.ttf");
 		getText().setPosition(getSprite().getPosition().x, getSprite().getPosition().y - getText().getLocalBounds().height / 2);
@@ -25,6 +25,9 @@ namespace EngineComponents
 		: Button(imagePath, hoverPath, pos, action, text)
 	{
 		setScale(increase);
+
+		getText().setOrigin(getText().getLocalBounds().width / 2, getText().getLocalBounds().height / 2);
+		getText().setPosition(getSprite().getPosition().x, getSprite().getPosition().y - getText().getLocalBounds().height / 3);
 	}
 
 	void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const 
@@ -36,39 +39,41 @@ namespace EngineComponents
 
 	void Button::setScale(const sf::Vector2f factors) 
 	{ 
-		getSprite().setScale(factors); 
+		RenderObject::setScale(factors);
 		m_currentSprite.getSprite().setScale(factors);
 		getHover().getSprite().setScale(factors);
 	}
 
 	void Button::setSize(const sf::Vector2f& targetSize)
 	{
-		getSprite().setScale({ targetSize.x / getSprite().getLocalBounds().width, targetSize.y / getSprite().getLocalBounds().height });
+		RenderObject::setSize(targetSize);
+		m_currentSprite.getSprite().setScale({ targetSize.x / getSprite().getLocalBounds().width, targetSize.y / getSprite().getLocalBounds().height });
 		getHover().getSprite().setScale({ targetSize.x / getSprite().getLocalBounds().width, targetSize.y / getSprite().getLocalBounds().height });
 	}
 
 	void Button::setPosition(sf::Vector2f pos)
 	{
-		getSprite().setPosition(pos.x, pos.y);
+		RenderObject::setPosition(pos);
 		m_currentSprite.getSprite().setPosition(pos.x, pos.y);
 		getHover().getSprite().setPosition(pos.x, pos.y);
 	}
 
 	void Button::setRotation(float degrees)
 	{
-		getSprite().setRotation(degrees);
+		RenderObject::setRotation(degrees);
 		getHover().getSprite().setRotation(degrees);
 	}
 
 	void Button::move(sf::Vector2f offset)
 	{
+		RenderObject::move(offset);
 		getSprite().move(offset);
 		getHover().getSprite().move(offset);
 	}
 
 	void Button::rotate(float degrees)
 	{
-		getSprite().rotate(degrees);
+		RenderObject::rotate(degrees);
 		getHover().getSprite().rotate(degrees);
 	}
 

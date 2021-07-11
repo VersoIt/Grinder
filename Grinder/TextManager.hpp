@@ -4,12 +4,18 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "Exceptions.hpp"
+
 namespace EngineComponents
 {
 	class TextManager : virtual public sf::Drawable
 	{
 	public:
 		TextManager(const std::string& str = "");
+
+		TextManager(const sf::Text& text);
+
+		void setString(const std::string& str);
 
 		const sf::Text& getText() const { return m_text; }
 		sf::Text& getText() { return m_text; }

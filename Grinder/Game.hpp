@@ -14,15 +14,9 @@ namespace EngineComponents
 	class Game : public EngineComponents::GUI
 	{
 	public:
-		Game(const std::string& mapPath) { m_map.load(mapPath); }
-		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
-		{
-			target.draw(m_map, states);
-			std::for_each(m_entities.begin(), m_entities.end(), [&](Entity* entity) {target.draw(*entity, states); });
-		}
-		virtual void catchMouseEvent(const sf::Event& event,const sf::Vector2i& mousePos) override
-		{
-		}
+		Game(const std::string& mapPath);
+		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+		virtual void catchMouseEvent(const sf::Event& event, const sf::Vector2i& mousePos) override;
 	private:
 		std::vector<Entity*> m_entities;
 		TileMap m_map;

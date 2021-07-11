@@ -20,16 +20,20 @@ namespace EngineComponents
 		{
 		}
 
-		RenderObject(const std::string& backgroundPath, const sf::Vector2f& increase, const std::string& text = "");
+		RenderObject(const std::string& backgroundPath, const sf::Text& text) : SpriteManager(backgroundPath), TextManager(text)
+		{
+		}
 
-		virtual void setScale(const sf::Vector2f factors) override { getSprite().setScale(factors); }
+		RenderObject(const sf::Vector2f& increase, const std::string& backgroundPath, const std::string& text = "");
+
+		virtual void setScale(const sf::Vector2f factors) override;
 		virtual void setSize(const sf::Vector2f& targetSize) override;
 
-		virtual void setPosition(sf::Vector2f pos) override { getSprite().setPosition(pos); }
-		virtual void setRotation(float degrees) override { getSprite().setRotation(degrees); }
+		virtual void setPosition(sf::Vector2f pos) override;
+		virtual void setRotation(float degrees) override;
 
-		virtual void move(sf::Vector2f offset) override { getSprite().move(offset); };
-		virtual void rotate(float degrees) override { getSprite().rotate(degrees); };
+		virtual void move(sf::Vector2f offset) override;
+		virtual void rotate(float degrees) override;
 
 		virtual void catchMouseEvent(const sf::Event& event, const sf::Vector2i& mousePos) override {}
 

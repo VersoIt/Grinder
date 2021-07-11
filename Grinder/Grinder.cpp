@@ -66,123 +66,129 @@ void generateWarningMenu(EngineComponents::GUI& scene, sf::Window& window)
 	scene.getText().setString("WARNING!");
 	scene.getText().setCharacterSize(80);
 	scene.setFont("Fonts/Archive.ttf");
-	scene.getText().setPosition(window.getSize().x / 2, window.getSize().y / 2);
 	scene.getText().setFillColor(sf::Color::Red);
+	scene.getSprite().setPosition({ static_cast<float>(window.getSize().x / 2), static_cast<float>(window.getSize().y / 2) });
+	scene.getText().setPosition(static_cast<float>(window.getSize().x / 2), static_cast<float>(200.f));
+	scene.push(new EngineComponents::Button({ 0.7f, 0.7f }, "Interface/Buttons/Basic/Button.png", "Interface/Buttons/Basic/ButtonHover.png", { static_cast<float>(window.getSize().x / 2), 890.f }, [&]() {exit(EXIT_FAILURE); }, "OK"));
 }
 
 int main()
 {
-	try
+	GUI loadingMenu("Interface/LoadingMenu/Background.png");
+	sf::RenderWindow window(sf::VideoMode::getDesktopMode(), "Elision engine works!", sf::Style::Default);
+	window.draw(loadingMenu);
+	window.display();
+	EngineComponents::GUI warningMenu;
+	sf::Event event;
+
 	{
-		sf::RenderWindow window;
-		sf::Event event;
-		Gui focus = Gui::MAIN;
-
-		bool isSelect = true;
-
-		EngineComponents::Game game("Utility/Map.tmx");
-
-		GUI mainMenu("Interface/MainMenu/Background.png");
-		GUI settingsMenu("Interface/SettingsMenu/Background.png");
-		GUI pauseMenu("Interface/PauseMenu/Background.png");
-		GUI warningMenu("Interface/WarningMenu/Background.png");
-
-		window.create(sf::VideoMode::getDesktopMode(), "Elision engine works!", sf::Style::Default);
-		window.setFramerateLimit(300);
-
-		EngineComponents::ScrollField* soundSettings = new EngineComponents::ScrollField(window, new EngineComponents::Button("Interface/Buttons/Settings/SoundButton.png", "Interface/Buttons/Settings/SoundButtonHover.png", { 700.f, 730.f }), new EngineComponents::Button("Interface/Buttons/Settings/NoSoundButton.png", "Interface/Buttons/Settings/NoSoundButtonHover.png"), new EngineComponents::Button("Interface/Buttons/Settings/SoundButton.png", "Interface/Buttons/Settings/SoundButtonHover.png"), "Interface/SettingsMenu/ScrollField.png", "Interface/SettingsMenu/ScrollField.png", { static_cast<float>(window.getSize().x / 2), 730.f }, Utility::loadSettings("Settings.tmx", "sound"));
-		EngineComponents::ScrollField* musicSettings = new EngineComponents::ScrollField(window, new EngineComponents::Button("Interface/Buttons/Settings/MusicButton.png", "Interface/Buttons/Settings/MusicButtonHover.png", { 700.f, 955.f }), new EngineComponents::Button("Interface/Buttons/Settings/NoMusicButton.png", "Interface/Buttons/Settings/NoMusicButtonHover.png"), new EngineComponents::Button("Interface/Buttons/Settings/MusicButton.png", "Interface/Buttons/Settings/MusicButtonHover.png"), "Interface/SettingsMenu/ScrollField.png", "Interface/SettingsMenu/ScrollField.png", { static_cast<float>(window.getSize().x / 2), 955.f }, Utility::loadSettings("Settings.tmx", "music"));
-
-		settingsMenu.push(soundSettings);
-		settingsMenu.push(musicSettings);
-
-		// creating the scenes of interface
-		generateMainMenu(mainMenu, window, focus);
-		generateSettingsMenu(settingsMenu, window, focus);
-		generatePauseMenu(pauseMenu, window, focus);
-		generateWarningMenu(warningMenu, window);
-
-		RenderObject* currentScene = &mainMenu;
-		while (window.isOpen())
+		try
 		{
-			sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+			Gui focus = Gui::MAIN;
+			bool isSelect = true;
 
-			currentScene->catchMouseEvent(event, mousePos);
+			Game game("Utility/Map.tmx");
+			GUI mainMenu("Interface/MainMenu/Background.png");
+			GUI settingsMenu("Interface/SettingsMenu/Background.png");
+			GUI pauseMenu("Interface/PauseMenu/Background.png");
 
-			while (window.pollEvent(event))
+			// creating the scenes of interface
+			generateMainMenu(mainMenu, window, focus);
+			generateSettingsMenu(settingsMenu, window, focus);
+			generatePauseMenu(pauseMenu, window, focus);
+			generateWarningMenu(warningMenu, window);
+
+			EngineComponents::ScrollField* soundSettings = new EngineComponents::ScrollField(window, new EngineComponents::Button("Interface/Buttons/Settings/SoundButton.png", "Interface/Buttons/Settings/SoundButtonHover.png", { 700.f, 730.f }), new EngineComponents::Button("Interface/Buttons/Settings/NoSoundButton.png", "Interface/Buttons/Settings/NoSoundButtonHover.png"), new EngineComponents::Button("Interface/Buttons/Settings/SoundButton.png", "Interface/Buttons/Settings/SoundButtonHover.png"), "Interface/SettingsMenu/ScrollField.png", "Interface/SettingsMenu/ScrollField.png", { static_cast<float>(window.getSize().x / 2), 730.f }, Utility::loadSettings("Settings.tmx", "sound"));
+			EngineComponents::ScrollField* musicSettings = new EngineComponents::ScrollField(window, new EngineComponents::Button("Interface/Buttons/Settings/MusicButton.png", "Interface/Buttons/Settings/MusicButtonHover.png", { 700.f, 955.f }), new EngineComponents::Button("Interface/Buttons/Settings/NoMusicButton.png", "Interface/Buttons/Settings/NoMusicButtonHover.png"), new EngineComponents::Button("Interface/Buttons/Settings/MusicButton.png", "Interface/Buttons/Settings/MusicButtonHover.png"), "Interface/SettingsMenu/ScrollField.png", "Interface/SettingsMenu/ScrollField.png", { static_cast<float>(window.getSize().x / 2), 955.f }, Utility::loadSettings("Settings.tmx", "music"));
+
+			settingsMenu.push(soundSettings);
+			settingsMenu.push(musicSettings);
+
+			RenderObject* currentScene = &mainMenu;
+
+			while (window.isOpen())
 			{
-				// handling keystrokes
-				switch (event.type)
+				sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+
+				currentScene->catchMouseEvent(event, mousePos);
+
+				while (window.pollEvent(event))
 				{
-				case sf::Event::KeyPressed:
-					if (event.key.code == sf::Keyboard::Escape && isSelect)
+					// handling keystrokes
+					switch (event.type)
 					{
-						isSelect = false;
-						switch (focus)
+					case sf::Event::KeyPressed:
+						if (event.key.code == sf::Keyboard::Escape && isSelect)
 						{
-						case Gui::GAME:
-							focus = Gui::PAUSE;
-							break;
-						case Gui::PAUSE:
-							focus = Gui::GAME;
-							break;
-						case Gui::SETTINGS:
-							focus = Gui::MAIN;
-							break;
-						case Gui::MAIN:
-							exit(EXIT_SUCCESS);
-							break;
+							isSelect = false;
+							switch (focus)
+							{
+							case Gui::GAME:
+								focus = Gui::PAUSE;
+								break;
+							case Gui::PAUSE:
+								focus = Gui::GAME;
+								break;
+							case Gui::SETTINGS:
+								focus = Gui::MAIN;
+								break;
+							case Gui::MAIN:
+								exit(EXIT_SUCCESS);
+								break;
+							}
 						}
+						break;
+					case sf::Event::KeyReleased:
+						isSelect = true;
+						break;
 					}
+					if (event.type == sf::Event::Closed)
+						window.close();
+				}
+
+				window.clear();
+
+				switch (focus)
+				{
+				case Gui::GAME:
+					currentScene = &game;
+					window.draw(game);
 					break;
-				case sf::Event::KeyReleased:
-					isSelect = true;
+				case Gui::PAUSE:
+					currentScene = &pauseMenu;
+					window.draw(game);
+					window.draw(pauseMenu);
+					break;
+				case Gui::SETTINGS:
+					currentScene = &settingsMenu;
+					window.draw(settingsMenu);
+					break;
+				case Gui::MAIN:
+					currentScene = &mainMenu;
+					window.draw(mainMenu);
 					break;
 				}
-				if (event.type == sf::Event::Closed)
-					window.close();
+				window.display();
 			}
 
-			window.clear();
+			Utility::saveSettings("Settings.tmx", *soundSettings, "sound");
+			Utility::saveSettings("Settings.tmx", *musicSettings, "music");
 
-			switch (focus)
-			{
-			case Gui::GAME:
-				currentScene = &game;
-				window.draw(game);
-				break;
-			case Gui::PAUSE:
-				currentScene = &pauseMenu;
-				window.draw(game);
-				window.draw(pauseMenu);
-				break;
-			case Gui::SETTINGS:
-				currentScene = &settingsMenu;
-				window.draw(settingsMenu);
-				break;
-			case Gui::MAIN:
-				currentScene = &mainMenu;
-				window.draw(mainMenu);
-				break;
-			}
-			window.draw(warningMenu);
-			window.display();
+			return EXIT_SUCCESS;
 		}
-
-		Utility::saveSettings("Settings.tmx", *soundSettings, "sound");
-		Utility::saveSettings("Settings.tmx", *musicSettings, "music");
-
-		return EXIT_SUCCESS;
-	}
-	catch (EngineComponents::SettingsFileMissing& exc)
-	{
-		std::cout << exc.what() << std::endl;
-		std::cout << "Please, reload game." << std::endl;
-		Utility::generateSettingsXML("Settings.tmx");
-	}
-	catch (...)
-	{
-		std::cout << "Something is wrong..." << std::endl;
-		return EXIT_FAILURE;
+		catch (EngineComponents::SettingsFileMissing& exc)
+		{
+			Utility::generateSettingsXML("Settings.tmx");
+			Utility::showWarningMenu(warningMenu, exc.what(), "Please, reload the game.", window, event);
+		}
+		catch (EngineComponents::FileMissing& exc)
+		{
+			Utility::showWarningMenu(warningMenu, exc.what(), "Please, reinstall the game.", window, event);
+		}
+		catch (...)
+		{
+			Utility::showWarningMenu(warningMenu, "Something went wrong...", "Please, reload the game.", window, event);
+			return EXIT_FAILURE;
+		}
 	}
 }
