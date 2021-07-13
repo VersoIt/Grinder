@@ -3,8 +3,8 @@
 
 namespace EngineComponents
 {
-	ScrollField::ScrollField(sf::Window& window, Button* button, Button* minButton, Button* maxButton, std::string imagePath, std::string hoverPath, sf::Vector2f pos, int share)
-		: m_window{ window }, Button(imagePath, hoverPath, pos, [this]() {if (!m_button->getSprite().getGlobalBounds().contains(static_cast<float>(sf::Mouse::getPosition(m_window).x), static_cast<float>(sf::Mouse::getPosition(m_window).y)))m_button->setPosition({ static_cast<float>(sf::Mouse::getPosition(m_window).x),getSprite().getPosition().y }); }), m_button{ button }, m_minButton{ minButton }, m_maxButton{ maxButton }, m_isMove{ false }, m_dX{ 0 }, m_currentButton{ button }, m_share{ share }
+	ScrollField::ScrollField(sf::Window& window, Button* button, Button* minButton, Button* maxButton, std::string imagePath, std::string hoverPath, const sf::Vector2f& pos, int share)
+		: m_window{ window }, Button(imagePath, hoverPath, [this]() {if (!m_button->getSprite().getGlobalBounds().contains(static_cast<float>(sf::Mouse::getPosition(m_window).x), static_cast<float>(sf::Mouse::getPosition(m_window).y)))m_button->setPosition({ static_cast<float>(sf::Mouse::getPosition(m_window).x),getSprite().getPosition().y }); }, pos), m_button{ button }, m_minButton{ minButton }, m_maxButton{ maxButton }, m_isMove{ false }, m_dX{ 0 }, m_currentButton{ button }, m_share{ share }
 	{
 
 		m_share < 100 ? m_share < 0 ? m_share = 0 : m_share : m_share = 100;
@@ -33,6 +33,7 @@ namespace EngineComponents
 
 	void ScrollField::catchMouseEvent(const sf::Event& event, const sf::Vector2i& mousePos)
 	{
+
 		if (getSprite().getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y)))
 		{
 			getCurrentSprite() = getHover();
@@ -56,11 +57,15 @@ namespace EngineComponents
 		{
 			if (event.type == sf::Event::MouseButtonPressed)
 			{
-				m_dX = mousePos.x - (m_button->getSprite().getPosition().x);
-				m_isMove = true;
+				if (event.mouseButton.button == sf::Mouse::Left)
+				{
+					m_dX = mousePos.x - (m_button->getSprite().getPosition().x);
+					m_isMove = true;
+				}
 			}
 		}
-		if (event.type == sf::Event::MouseButtonReleased)
+
+		if (event.type == sf::Event::MouseButtonReleased && m_isMove)
 		{
 			m_isMove = false;
 		}
@@ -88,7 +93,6 @@ namespace EngineComponents
 		m_shadowText.setString(std::to_string(m_share) + '%');
 		m_currentButton->catchMouseEvent(event, mousePos);
 	}
-
 
 	ScrollField::~ScrollField() { delete m_button; delete m_minButton; delete m_maxButton; }
 }

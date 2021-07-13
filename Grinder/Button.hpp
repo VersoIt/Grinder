@@ -2,9 +2,12 @@
 #ifndef _BUTTON_HPP_
 #define _BUTTON_HPP_
 
+/////////////////////////////////////////////////
+//////////////////// Headers ////////////////////
+/////////////////////////////////////////////////
+
 #include <SFML/Graphics.hpp>
 #include <functional>
-
 #include "SpriteManager.hpp"
 #include "TextManager.hpp"
 #include "MouseEventable.hpp"
@@ -17,9 +20,9 @@ namespace EngineComponents
 	{
 	public:
 
-		Button(const std::string& imagePath, const std::string& hoverPath, sf::Vector2f pos = {0, 0}, std::function<void(void)> action = []() {}, const std::string& text = "");
+		Button(const std::string& imagePath, const std::string& hoverPath, std::function<void(void)> action = []() {}, const sf::Vector2f& pos = { 0, 0 }, const std::string& text = "");
 
-		Button(sf::Vector2f increase, const std::string& imagePath, const std::string& hoverPath, sf::Vector2f pos = { 0, 0 }, std::function<void(void)> action = []() {}, const std::string& text = "");
+		Button(sf::Vector2f increase, const std::string& imagePath, const std::string& hoverPath, std::function<void(void)> action = []() {}, const sf::Vector2f& pos = { 0, 0 }, const std::string& text = "");
 
 		void setCurrentSprite(const SpriteManager& sprite) { m_currentSprite = sprite; }
 

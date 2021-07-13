@@ -3,7 +3,7 @@
 namespace EngineComponents
 {
 
-	RenderObject::RenderObject(const sf::Vector2f& increase, const std::string& backgroundPath, const std::string& text) : RenderObject(backgroundPath, text)
+	RenderObject::RenderObject(const sf::Vector2f& increase, const std::string& backgroundPath, const std::string& text, const sf::Vector2f& pos) : RenderObject(backgroundPath, text, pos)
 	{
 		setScale(increase);
 	}

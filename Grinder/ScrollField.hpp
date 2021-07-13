@@ -2,8 +2,11 @@
 #ifndef _SCROLL_FIELD_HPP_
 #define _SCROLL_FiELD_HPP_
 
-#include <string>
+/////////////////////////////////////////////////
+//////////////////// Headers ////////////////////
+/////////////////////////////////////////////////
 
+#include <string>
 #include "Button.hpp"
 #include "tinyxml2.h"
 
@@ -13,7 +16,7 @@ namespace EngineComponents
 	{
 	public:
 
-		ScrollField(sf::Window& window, Button* button, Button* minButton, Button* maxButton, std::string imagePath, std::string hoverPath, sf::Vector2f pos, int share = 80);
+		ScrollField(sf::Window& window, Button* button, Button* minButton, Button* maxButton, std::string imagePath, std::string hoverPath, const sf::Vector2f& pos, int share = 80);
 
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates state) const;
 
@@ -24,6 +27,7 @@ namespace EngineComponents
 		virtual ~ScrollField();
 
 	private:
+
 		Button* m_currentButton;
 		sf::Window& m_window;
 		bool m_isMove;

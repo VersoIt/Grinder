@@ -3,8 +3,12 @@
 #define _VECTOR_HPP_
 
 #define _USE_MATH_DEFINES
-#include <math.h>
 
+/////////////////////////////////////////////////
+//////////////////// Headers ////////////////////
+/////////////////////////////////////////////////
+
+#include <math.h>
 #include <iostream>
 
 namespace EngineUtility
@@ -22,7 +26,7 @@ namespace EngineUtility
 		{
 		}
 
-		static float convertToDegrees(float radians) { return static_cast<float>(radians * 180 / M_PI); }
+		static float convertToDegrees(float radians) { return static_cast<float>(radians * 180.f / M_PI); }
 
 		void normalize();
 

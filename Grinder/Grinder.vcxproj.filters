@@ -36,9 +36,6 @@
     <ClCompile Include="tinyxml2.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Container.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="GUI.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
@@ -119,10 +116,5 @@
     <ClInclude Include="Configuration.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Container.inl">
-      <Filter>Файлы заголовков</Filter>
-    </None>
   </ItemGroup>
 </Project>

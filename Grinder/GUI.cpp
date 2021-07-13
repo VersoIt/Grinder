@@ -6,6 +6,7 @@ namespace EngineComponents
 	GUI::GUI(const std::string& backgroundPath, const std::string& text, size_t capacity) : RenderObject(backgroundPath, text)
 	{
 		getContainer().reserve(capacity);
+		getSprite().setPosition(static_cast<float>(getTexture().getSize().x / 2), static_cast<float>(getTexture().getSize().y / 2));
 	}
 
 	void GUI::catchMouseEvent(const sf::Event& event, const sf::Vector2i& mousePos)

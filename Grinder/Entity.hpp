@@ -2,8 +2,11 @@
 #ifndef _ENTITY_HPP_
 #define _ENTITY_HPP_
 
-#include <SFML/Graphics.hpp>
+/////////////////////////////////////////////////
+//////////////////// Headers ////////////////////
+/////////////////////////////////////////////////
 
+#include <SFML/Graphics.hpp>
 #include "SpriteManager.hpp"
 #include "Manager.hpp"
 #include "Vector.hpp"
@@ -30,6 +33,7 @@ namespace EngineComponents
 
 		EngineUtility::Vector& getVector() { return m_vector; }
 		const EngineUtility::Vector& getVector() const { return m_vector; }
+
 	protected:
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
 		{
@@ -44,6 +48,7 @@ namespace EngineComponents
 
 		int m_health;
 		float m_acceleration;
+
 	};
 
 }

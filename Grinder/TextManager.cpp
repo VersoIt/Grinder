@@ -2,9 +2,25 @@
 
 namespace EngineComponents
 {
-	TextManager::TextManager(const std::string& str) { m_text.setString(str); }
+	TextManager::TextManager(const std::string& str, const sf::Vector2f& pos) 
+	{ 
+		m_text.setString(str);
+		m_text.setPosition(pos);
+	}
 
-	TextManager::TextManager(const sf::Text& text) { m_text = text; }
+	TextManager::TextManager(const sf::Text& text, const sf::Vector2f& pos) 
+	{ 
+		m_text = text; 
+		m_text.setPosition(pos);
+	}
+
+	TextManager::TextManager(const std::string& str, const std::string& fontPath, unsigned int charSize, const sf::Vector2f& pos)
+	{
+		m_text.setString(str);
+		m_text.setCharacterSize(charSize);
+		setFont(fontPath);
+		m_text.setPosition(pos);
+	}
 
 	void TextManager::setFont(const std::string& path)
 	{

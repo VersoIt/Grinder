@@ -2,8 +2,11 @@
 #ifndef _SPRITE_MANAGER_H_
 #define _SPRITE_MANAGER_H_
 
-#include <SFML/Graphics.hpp>
+/////////////////////////////////////////////////
+//////////////////// Headers ////////////////////
+/////////////////////////////////////////////////
 
+#include <SFML/Graphics.hpp>
 #include "Exceptions.hpp"
 
 namespace EngineComponents
@@ -11,7 +14,8 @@ namespace EngineComponents
 	class SpriteManager : virtual public sf::Drawable
 	{
 	public:
-		SpriteManager(const std::string& path);
+		SpriteManager(const std::string& path, const sf::Vector2f& pos = { 0,0 });
+
 		SpriteManager() {}
 
 		void setTexture(const std::string& path);

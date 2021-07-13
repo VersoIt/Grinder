@@ -2,8 +2,12 @@
 #ifndef _GUI_OBJECT_HPP_
 #define _GUI_OBJECT_HPP_
 
-#include <SFML/Graphics.hpp>
+/////////////////////////////////////////////////
+//////////////////// Headers ////////////////////
+/////////////////////////////////////////////////
 
+#include <SFML/Graphics.hpp>
+#include <string>
 #include "MouseEventable.hpp"
 #include "Manager.hpp"
 #include "SpriteManager.hpp"
@@ -16,7 +20,7 @@ namespace EngineComponents
 	{
 
 	public:
-		RenderObject(const std::string& backgroundPath, const std::string& text = "") : SpriteManager(backgroundPath), TextManager(text)
+		RenderObject(const std::string& backgroundPath, const std::string& text = "", const sf::Vector2f& pos = { 0,0 }) : SpriteManager(backgroundPath, pos), TextManager(text, pos)
 		{
 		}
 
@@ -24,7 +28,11 @@ namespace EngineComponents
 		{
 		}
 
-		RenderObject(const sf::Vector2f& increase, const std::string& backgroundPath, const std::string& text = "");
+		RenderObject(const std::string& backgroundPath, const EngineComponents::TextManager& text) : SpriteManager(backgroundPath), TextManager(text)
+		{
+		}
+
+		RenderObject(const sf::Vector2f& increase, const std::string& backgroundPath, const std::string& text = "", const sf::Vector2f& pos = { 0,0 });
 
 		virtual void setScale(const sf::Vector2f factors) override;
 		virtual void setSize(const sf::Vector2f& targetSize) override;
