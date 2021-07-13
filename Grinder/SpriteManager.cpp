@@ -23,4 +23,10 @@ namespace EngineComponents
 		}
 	}
 
+	void SpriteManager::draw(sf::RenderTarget& target, sf::RenderStates states) const
+	{
+		if (m_filePath != "")
+			target.draw(m_sprite, states);
+	}
+
 }

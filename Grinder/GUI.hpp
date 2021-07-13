@@ -22,7 +22,7 @@ namespace EngineComponents
 		virtual void setSize(const sf::Vector2f& targetSize) override;
 		virtual void setScale(const sf::Vector2f factors) override;
 
-		virtual void setPosition(sf::Vector2f pos) override;
+		virtual void setPosition(const sf::Vector2f& pos) override;
 		virtual void setRotation(float degrees) override;
 
 		virtual void move(sf::Vector2f offset) override;

@@ -11,7 +11,6 @@ namespace Utility
 
 		EngineComponents::RenderObject* excText = new EngineComponents::RenderObject("", what);
 		excText->getText().setCharacterSize(backgroundMenu.getSize().x / 17.2);
-		excText->setFont("Fonts/Archive.ttf");
 
 		EngineComponents::RenderObject* askText = new EngineComponents::RenderObject(*excText);
 		askText->setString(request);
@@ -19,21 +18,23 @@ namespace Utility
 		warningMenu.push(excText);
 		warningMenu.push(askText);
 
-		excText->getText().setPosition(static_cast<float>(window.getSize().x / 2), static_cast<float>(window.getSize().y / 2));
-		askText->getText().setPosition(static_cast<float>(window.getSize().x / 2), static_cast<float>(window.getSize().y / 2 + excText->getText().getLocalBounds().height * 1.5));
-		askText->getText().setFillColor(sf::Color(255, 252, 0));
-
 		EngineComponents::SpriteManager backgroundSprite("");
 
 		try
 		{
 			backgroundSprite.setTexture("Interface/MainMenu/Background.png");
+			backgroundSprite.getSprite().setPosition(static_cast<float>(backgroundSprite.getTexture().getSize().x / 2), static_cast<float>(backgroundSprite.getTexture().getSize().y / 2));
+			excText->setFont("Fonts/Archive.ttf");
+			askText->setFont("Fonts/Archive.ttf");
 		}
 		catch (EngineComponents::FileMissing& exc)
 		{
-			std::cout << exc.what() << std::endl;
+			window.close();
 		}
 
+		excText->getText().setPosition(static_cast<float>(window.getSize().x / 2), static_cast<float>(window.getSize().y / 2));
+		askText->getText().setPosition(static_cast<float>(window.getSize().x / 2), static_cast<float>(window.getSize().y / 2 + excText->getText().getLocalBounds().height * 1.5));
+		askText->getText().setFillColor(sf::Color(255, 252, 0));
 
 		sf::RectangleShape background({ static_cast<float>(window.getSize().x), static_cast<float>(window.getSize().y) });
 		background.setFillColor(sf::Color(0, 0, 0, 128));

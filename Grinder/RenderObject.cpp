@@ -10,7 +10,7 @@ namespace EngineComponents
 
 	void RenderObject::setScale(const sf::Vector2f factors)
 	{
-		getSprite().setScale(factors); 
+		getSprite().setScale(factors);
 		getText().setScale(factors);
 	}
 
@@ -30,34 +30,34 @@ namespace EngineComponents
 		);
 	}
 
-	void RenderObject::setPosition(sf::Vector2f pos)
-	{ 
-		getSprite().setPosition(pos); 
+	void RenderObject::setPosition(const sf::Vector2f& pos)
+	{
+		getSprite().setPosition(pos);
 		getText().setPosition(pos);
 	}
 
 	void RenderObject::setRotation(float degrees)
-	{ 
-		getSprite().setRotation(degrees); 
+	{
+		getSprite().setRotation(degrees);
 		getText().setRotation(degrees);
 	}
 
 	void RenderObject::move(sf::Vector2f offset)
-	{ 
-		getSprite().move(offset); 
+	{
+		getSprite().move(offset);
 		getText().move(offset);
 	}
 
 	void RenderObject::rotate(float degrees)
-	{ 
-		getSprite().rotate(degrees); 
+	{
+		getSprite().rotate(degrees);
 		getText().rotate(degrees);
 	}
 
-	void RenderObject::draw(sf::RenderTarget& target, sf::RenderStates states) const 
-	{ 
-		SpriteManager::draw(target, states); 
-		TextManager::draw(target,states);
+	void RenderObject::draw(sf::RenderTarget& target, sf::RenderStates states) const
+	{
+		SpriteManager::draw(target, states);
+		TextManager::draw(target, states);
 	}
 
 }

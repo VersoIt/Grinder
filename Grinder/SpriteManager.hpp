@@ -30,11 +30,8 @@ namespace EngineComponents
 		std::string& getTextureFilePath() { return m_filePath; }
 
 	protected:
-		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
-		{
-			if (m_filePath != "")
-				target.draw(m_sprite, states);
-		}
+		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
 	private:
 		sf::Sprite m_sprite;
 		sf::Texture m_texture;

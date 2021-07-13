@@ -23,7 +23,7 @@ namespace EngineComponents
 		{
 		}
 
-		virtual void setPosition(sf::Vector2f pos) override { getSprite().setPosition(pos); };
+		virtual void setPosition(const sf::Vector2f& pos) override { getSprite().setPosition(pos); };
 		virtual void setRotation(float degrees) override { getSprite().setRotation(degrees); };
 
 		virtual void move(sf::Vector2f offset) override { getSprite().move(offset); }

@@ -46,7 +46,7 @@ namespace EngineComponents
 		getHover().getSprite().setScale({ targetSize.x / getSprite().getLocalBounds().width, targetSize.y / getSprite().getLocalBounds().height });
 	}
 
-	void Button::setPosition(sf::Vector2f pos)
+	void Button::setPosition(const sf::Vector2f& pos)
 	{
 		RenderObject::setPosition(pos);
 		m_currentSprite.getSprite().setPosition(pos.x, pos.y);
@@ -62,8 +62,8 @@ namespace EngineComponents
 	void Button::move(sf::Vector2f offset)
 	{
 		RenderObject::move(offset);
-		getSprite().move(offset);
 		getHover().getSprite().move(offset);
+		m_currentSprite.getSprite().move(offset);
 	}
 
 	void Button::rotate(float degrees)

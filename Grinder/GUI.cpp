@@ -45,11 +45,11 @@ namespace EngineComponents
 		offend([&](EngineComponents::RenderObject* object) {object->setScale(factors); });
 	}
 
-	void GUI::setPosition(sf::Vector2f pos)
+	void GUI::setPosition(const sf::Vector2f& pos)
 	{
-		getText().setPosition(pos);
+		getText().move(pos - getSprite().getPosition());
+		offend([&](EngineComponents::RenderObject* object) {object->move(pos - getSprite().getPosition()); });
 		getSprite().setPosition(pos);
-		offend([&](EngineComponents::RenderObject* object) {object->setPosition(pos); });
 	}
 
 	void GUI::setRotation(float degrees)
