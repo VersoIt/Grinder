@@ -4,7 +4,7 @@
 namespace EngineComponents
 {
 	Button::Button(const std::string& imagePath, const std::string& hoverPath, std::function<void(void)> action, const sf::Vector2f& pos, const std::string& str)
-		: RenderObject(imagePath, str, pos), m_action{ action }, m_hover{ hoverPath, pos }, m_isClicked{ false }
+		: EventObject(imagePath, str, pos), m_action{ action }, m_hover{ hoverPath, pos }, m_isClicked{ false }
 	{
 		m_currentSprite.sprite = sprite;
 		m_currentSprite.texture = texture;
@@ -34,41 +34,41 @@ namespace EngineComponents
 
 	void Button::setScale(const sf::Vector2f factors) 
 	{ 
-		RenderObject::setScale(factors);
+		EventObject::setScale(factors);
 		m_currentSprite.sprite.setScale(factors);
 		getHover().sprite.setScale(factors);
 	}
 
 	void Button::setSize(const sf::Vector2f& targetSize)
 	{
-		RenderObject::setSize(targetSize);
+		EventObject::setSize(targetSize);
 		m_currentSprite.sprite.setScale({ targetSize.x / sprite.getLocalBounds().width, targetSize.y / sprite.getLocalBounds().height });
 		getHover().sprite.setScale({ targetSize.x / sprite.getLocalBounds().width, targetSize.y / sprite.getLocalBounds().height });
 	}
 
 	void Button::setPosition(const sf::Vector2f& pos)
 	{
-		RenderObject::setPosition(pos);
+		EventObject::setPosition(pos);
 		m_currentSprite.sprite.setPosition(pos.x, pos.y);
 		getHover().sprite.setPosition(pos.x, pos.y);
 	}
 
 	void Button::setRotation(float degrees)
 	{
-		RenderObject::setRotation(degrees);
+		EventObject::setRotation(degrees);
 		getHover().sprite.setRotation(degrees);
 	}
 
 	void Button::move(sf::Vector2f offset)
 	{
-		RenderObject::move(offset);
+		EventObject::move(offset);
 		getHover().sprite.move(offset);
 		m_currentSprite.sprite.move(offset);
 	}
 
 	void Button::rotate(float degrees)
 	{
-		RenderObject::rotate(degrees);
+		EventObject::rotate(degrees);
 		getHover().sprite.rotate(degrees);
 	}
 

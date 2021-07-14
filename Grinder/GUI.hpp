@@ -9,11 +9,12 @@
 #include <vector>
 #include "Container.hpp"
 #include "Manager.hpp"
-#include "RenderObject.hpp"
+#include "Object.hpp"
+#include "EventObject.hpp"
 
 namespace EngineComponents
 {
-	class GUI : public Container<RenderObject>, public RenderObject
+	class GUI : public Container<Object>, public EventObject
 	{
 	public:
 

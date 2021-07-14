@@ -2,7 +2,6 @@
 
 namespace EngineSupport
 {
-
 	FrameRate::FrameRate(std::string path, sf::Color color) : Timer()
 	{
 		m_font.loadFromFile(path);

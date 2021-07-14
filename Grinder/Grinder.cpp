@@ -55,7 +55,7 @@ int main()
 		settingsMenu.push(soundSettings);
 		settingsMenu.push(musicSettings);
 
-		RenderObject* currentScene = &mainMenu;
+		EventObject* currentScene = &mainMenu;
 
 		while (window.isOpen())
 		{

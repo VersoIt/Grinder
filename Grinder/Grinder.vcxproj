@@ -167,7 +167,8 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Grinder.cpp" />
     <ClCompile Include="GUI.cpp" />
-    <ClCompile Include="RenderObject.cpp" />
+    <ClCompile Include="EventObject.cpp" />
+    <ClCompile Include="Object.cpp" />
     <ClCompile Include="ScrollField.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="SpriteManager.cpp" />
@@ -187,7 +188,7 @@
     <ClInclude Include="MouseEventable.hpp" />
     <ClInclude Include="FrameRate.hpp" />
     <ClInclude Include="Manager.hpp" />
-    <ClInclude Include="RenderObject.hpp" />
+    <ClInclude Include="EventObject.hpp" />
     <ClInclude Include="Object.hpp" />
     <ClInclude Include="Random.hpp" />
     <ClInclude Include="ScrollField.hpp" />

@@ -12,11 +12,11 @@
 #include "TextManager.hpp"
 #include "MouseEventable.hpp"
 #include "Manager.hpp"
-#include "RenderObject.hpp"
+#include "EventObject.hpp"
 
 namespace EngineComponents
 {
-	class Button : public RenderObject
+	class Button : public EventObject
 	{
 	public:
 
@@ -24,7 +24,7 @@ namespace EngineComponents
 
 		Button(sf::Vector2f increase, const std::string& imagePath, const std::string& hoverPath, std::function<void(void)> action = []() {}, const sf::Vector2f& pos = { 0, 0 }, const std::string& text = "");
 
-		void setCurrentSprite(const SpriteManager& sprite) { m_currentSprite = sprite; }
+		void setCurrentSprite(const SpriteManager& copySprite) { m_currentSprite = copySprite; }
 
 		virtual void setScale(const sf::Vector2f factors) override;
 		virtual void setSize(const sf::Vector2f& targetSize) override;

@@ -14,6 +14,7 @@ namespace EngineComponents
 	{
 	public:
 		virtual void catchMouseEvent(const sf::Event& event, const sf::Vector2i& mousePos) = 0;
+
 	};
 }
 

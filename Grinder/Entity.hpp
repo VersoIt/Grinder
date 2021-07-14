@@ -7,19 +7,16 @@
 /////////////////////////////////////////////////
 
 #include <SFML/Graphics.hpp>
-#include "SpriteManager.hpp"
-#include "Manager.hpp"
+#include "EventObject.hpp"
 #include "Vector.hpp"
-#include "TextManager.hpp"
-#include "SpriteManager.hpp"
 
 namespace EngineComponents
 {
-	class Entity : public Manager, public TextManager, public SpriteManager
+	class Entity : public EventObject
 	{
 	public:
-		Entity(const std::string& path, int health = 10, float acceleration = 0.1f, const std::string& name = "")
-			: SpriteManager(path), m_health{ health }, m_acceleration{ acceleration }, TextManager{ name }
+		Entity(const std::string& backgroundPath, int health = 10, float acceleration = 0.1f, const std::string& name = "")
+			: EventObject(backgroundPath, name), m_health{ health }, m_acceleration{ acceleration }
 		{
 		}
 
