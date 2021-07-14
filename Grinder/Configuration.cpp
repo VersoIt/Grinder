@@ -10,7 +10,7 @@ namespace Utility
 		backgroundMenu.setPosition(static_cast<float>(window.getSize().x / 2), static_cast<float>(window.getSize().y / 2));
 
 		EngineComponents::RenderObject* excText = new EngineComponents::RenderObject("", what);
-		excText->getText().setCharacterSize(backgroundMenu.getSize().x / 17.2);
+		excText->text.setCharacterSize(backgroundMenu.getSize().x / 17.2);
 
 		EngineComponents::RenderObject* askText = new EngineComponents::RenderObject(*excText);
 		askText->setString(request);
@@ -23,18 +23,18 @@ namespace Utility
 		try
 		{
 			backgroundSprite.setTexture("Interface/MainMenu/Background.png");
-			backgroundSprite.getSprite().setPosition(static_cast<float>(backgroundSprite.getTexture().getSize().x / 2), static_cast<float>(backgroundSprite.getTexture().getSize().y / 2));
+			backgroundSprite.sprite.setPosition(static_cast<float>(backgroundSprite.texture.getSize().x / 2), static_cast<float>(backgroundSprite.texture.getSize().y / 2));
 			excText->setFont("Fonts/Archive.ttf");
 			askText->setFont("Fonts/Archive.ttf");
 		}
 		catch (EngineComponents::FileMissing& exc)
 		{
-			window.close();
+			exit(EXIT_FAILURE);
 		}
 
-		excText->getText().setPosition(static_cast<float>(window.getSize().x / 2), static_cast<float>(window.getSize().y / 2));
-		askText->getText().setPosition(static_cast<float>(window.getSize().x / 2), static_cast<float>(window.getSize().y / 2 + excText->getText().getLocalBounds().height * 1.5));
-		askText->getText().setFillColor(sf::Color(255, 252, 0));
+		excText->text.setPosition(static_cast<float>(window.getSize().x / 2), static_cast<float>(window.getSize().y / 2));
+		askText->text.setPosition(static_cast<float>(window.getSize().x / 2), static_cast<float>(window.getSize().y / 2 + excText->text.getLocalBounds().height * 1.5));
+		askText->text.setFillColor(sf::Color(255, 252, 0));
 
 		sf::RectangleShape background({ static_cast<float>(window.getSize().x), static_cast<float>(window.getSize().y) });
 		background.setFillColor(sf::Color(0, 0, 0, 128));
@@ -153,12 +153,12 @@ namespace Utility
 
 	void generateWarningMenu(EngineComponents::GUI& scene, sf::Window& window)
 	{
-		scene.getText().setString("WARNING!");
-		scene.getText().setCharacterSize(80);
+		scene.text.setString("WARNING!");
+		scene.text.setCharacterSize(80);
 		scene.setFont("Fonts/Archive.ttf");
-		scene.getText().setFillColor(sf::Color::Red);
-		scene.getSprite().setPosition({ static_cast<float>(window.getSize().x / 2), static_cast<float>(window.getSize().y / 2) });
-		scene.getText().setPosition(static_cast<float>(window.getSize().x / 2), static_cast<float>(200.f));
+		scene.text.setFillColor(sf::Color::Red);
+		scene.sprite.setPosition({ static_cast<float>(window.getSize().x / 2), static_cast<float>(window.getSize().y / 2) });
+		scene.text.setPosition(static_cast<float>(window.getSize().x / 2), static_cast<float>(200.f));
 		scene.push(new EngineComponents::Button({ 0.7f, 0.7f }, "Interface/Buttons/Basic/Button.png", "Interface/Buttons/Basic/ButtonHover.png", [&]() {exit(EXIT_FAILURE); }, { static_cast<float>(window.getSize().x / 2), 890.f }, "OK"));
 	}
 

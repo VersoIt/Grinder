@@ -12,33 +12,21 @@
 
 namespace EngineComponents
 {
-	class TextManager : virtual public sf::Drawable
+	struct TextManager : virtual public sf::Drawable
 	{
-	public:
 		TextManager(const std::string& str = "", const sf::Vector2f& pos = { 0,0 });
-
 		TextManager(const sf::Text& text, const sf::Vector2f& pos = { 0,0 });
-
 		TextManager(const std::string& str, const std::string& fontPath, unsigned int charSize, const sf::Vector2f& pos = { 0,0 });
-
-		TextManager(const TextManager& copy) : m_text{ copy.m_text }, m_font{ copy.m_font }
-		{
-			m_text.setFont(m_font);
-		}
+		TextManager(const TextManager& copy);
 
 		void setString(const std::string& str);
-
-		const sf::Text& getText() const { return m_text; }
-		sf::Text& getText() { return m_text; }
-
 		void setFont(const std::string& path);
+
+		sf::Text text; ///< Text to display
+		sf::Font font; ///< Font used to display the string
 
 	protected:
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-
-	private:
-		sf::Text m_text; ///< Text to display
-		sf::Font m_font; ///< Font used to display the string
 
 	};
 }

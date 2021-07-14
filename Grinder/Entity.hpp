@@ -23,11 +23,11 @@ namespace EngineComponents
 		{
 		}
 
-		virtual void setPosition(const sf::Vector2f& pos) override { getSprite().setPosition(pos); };
-		virtual void setRotation(float degrees) override { getSprite().setRotation(degrees); };
+		virtual void setPosition(const sf::Vector2f& pos) override { sprite.setPosition(pos); };
+		virtual void setRotation(float degrees) override { sprite.setRotation(degrees); };
 
-		virtual void move(sf::Vector2f offset) override { getSprite().move(offset); }
-		virtual void rotate(float degrees) override { getSprite().rotate(degrees); };
+		virtual void move(sf::Vector2f offset) override { sprite.move(offset); }
+		virtual void rotate(float degrees) override { sprite.rotate(degrees); };
 
 		virtual void update(float time) = 0; // basic
 
@@ -35,12 +35,7 @@ namespace EngineComponents
 		const EngineUtility::Vector& getVector() const { return m_vector; }
 
 	protected:
-		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
-		{
-			target.draw(getSprite(), states);
-			if (getText().getString() != "")
-				target.draw(getText(), states);
-		}
+		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 	private:
 		EngineUtility::Vector m_vector;

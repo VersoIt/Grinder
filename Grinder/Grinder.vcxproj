@@ -169,6 +169,7 @@
     <ClCompile Include="GUI.cpp" />
     <ClCompile Include="RenderObject.cpp" />
     <ClCompile Include="ScrollField.cpp" />
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="SpriteManager.cpp" />
     <ClCompile Include="MapRenderer.cpp" />
     <ClCompile Include="TextManager.cpp" />

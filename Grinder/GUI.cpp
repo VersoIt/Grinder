@@ -6,7 +6,7 @@ namespace EngineComponents
 	GUI::GUI(const std::string& backgroundPath, const std::string& text, size_t capacity) : RenderObject(backgroundPath, text)
 	{
 		getContainer().reserve(capacity);
-		getSprite().setPosition(static_cast<float>(getTexture().getSize().x / 2), static_cast<float>(getTexture().getSize().y / 2));
+		sprite.setPosition(static_cast<float>(texture.getSize().x / 2), static_cast<float>(texture.getSize().y / 2));
 	}
 
 	void GUI::catchMouseEvent(const sf::Event& event, const sf::Vector2i& mousePos)
@@ -23,16 +23,16 @@ namespace EngineComponents
 
 	void GUI::setSize(const sf::Vector2f& targetSize)
 	{
-		getText().setScale(
+		text.setScale(
 			{
-				targetSize.x / getSprite().getLocalBounds().width,
-				targetSize.y / getSprite().getLocalBounds().height
+				targetSize.x / sprite.getLocalBounds().width,
+				targetSize.y / sprite.getLocalBounds().height
 			}
 		);
-		getSprite().setScale(
+		sprite.setScale(
 			{
-				targetSize.x / getSprite().getLocalBounds().width,
-				targetSize.y / getSprite().getLocalBounds().height
+				targetSize.x / sprite.getLocalBounds().width,
+				targetSize.y / sprite.getLocalBounds().height
 			}
 		);
 		offend([&](EngineComponents::RenderObject* object) {object->setSize(targetSize); });
@@ -40,36 +40,36 @@ namespace EngineComponents
 
 	void GUI::setScale(const sf::Vector2f factors)
 	{
-		getText().setScale(factors);
-		getSprite().setScale(factors);
+		text.setScale(factors);
+		sprite.setScale(factors);
 		offend([&](EngineComponents::RenderObject* object) {object->setScale(factors); });
 	}
 
 	void GUI::setPosition(const sf::Vector2f& pos)
 	{
-		getText().move(pos - getSprite().getPosition());
-		offend([&](EngineComponents::RenderObject* object) {object->move(pos - getSprite().getPosition()); });
-		getSprite().setPosition(pos);
+		text.move(pos - sprite.getPosition());
+		offend([&](EngineComponents::RenderObject* object) {object->move(pos - sprite.getPosition()); });
+		sprite.setPosition(pos);
 	}
 
 	void GUI::setRotation(float degrees)
 	{
-		getText().setRotation(degrees);
-		getSprite().setRotation(degrees);
+		text.setRotation(degrees);
+		sprite.setRotation(degrees);
 		offend([&](EngineComponents::RenderObject* object) {object->setRotation(degrees); });
 	}
 
 	void GUI::move(sf::Vector2f offset)
 	{
-		getText().move(offset);
-		getSprite().move(offset);
+		text.move(offset);
+		sprite.move(offset);
 		offend([&](EngineComponents::RenderObject* object) {object->move(offset); });
 	}
 
 	void GUI::rotate(float degrees)
 	{
-		getText().rotate(degrees);
-		getSprite().rotate(degrees);
+		text.rotate(degrees);
+		sprite.rotate(degrees);
 		offend([&](EngineComponents::RenderObject* object) {object->rotate(degrees); });
 	}
 

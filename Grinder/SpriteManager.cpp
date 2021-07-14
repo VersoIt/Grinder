@@ -6,27 +6,27 @@ namespace EngineComponents
 	{
 		setTexture(path);
 		if (path != "")
-			m_sprite.setPosition(pos);
+			sprite.setPosition(pos);
 	}
 
 	void SpriteManager::setTexture(const std::string& path)
 	{
 		if (path != "")
 		{
-			if (!m_texture.loadFromFile(path))
+			if (!texture.loadFromFile(path))
 				throw EngineComponents::FileMissing("The texture file is missing.");
 
 			m_filePath = path;
 
-			m_sprite.setTexture(m_texture);
-			m_sprite.setOrigin(static_cast<float>(getTexture().getSize().x / 2), static_cast<float>(getTexture().getSize().y / 2));
+			sprite.setTexture(texture);
+			sprite.setOrigin(static_cast<float>(texture.getSize().x / 2), static_cast<float>(texture.getSize().y / 2));
 		}
 	}
 
 	void SpriteManager::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	{
 		if (m_filePath != "")
-			target.draw(m_sprite, states);
+			target.draw(sprite, states);
 	}
 
 }

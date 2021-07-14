@@ -30,7 +30,7 @@ int main()
 		window.create(sf::VideoMode::getDesktopMode(), "Elision engine works!", sf::Style::Fullscreen);
 		generateWarningMenu(warningMenu, window);
 		loadingMenu.setTexture("Interface/LoadingMenu/Background.png");
-		loadingMenu.getSprite().move(static_cast<float>(loadingMenu.getTexture().getSize().x / 2), static_cast<float>(loadingMenu.getTexture().getSize().y / 2));
+		loadingMenu.sprite.move(static_cast<float>(loadingMenu.texture.getSize().x / 2), static_cast<float>(loadingMenu.texture.getSize().y / 2));
 		generateLoadingMenu(loadingMenu, window);
 
 		window.draw(loadingMenu);
